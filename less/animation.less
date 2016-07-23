@@ -1,0 +1,96 @@
+@import "base.less";
+@btnColor: #1dc2b4;
+@objColor:#ef4454;
+
+.showbiz{
+    display: -webkit-box;     
+    display: -moz-box;    
+    display: -ms-flexbox; 
+    display: -webkit-flex;   
+    display: flex; 
+    margin: .5rem 1rem;
+    h1{
+        
+        display: block;
+        background-color: @btnColor;
+        border-radius: 2px;
+        height: 3rem;
+        line-height: 3rem;
+        text-align: center;
+        color: #fff;
+        
+        font-size: 1.5rem;
+        -webkit-box-flex: 1; -moz-box-flex: 1; -webkit-flex: 1;-ms-flex: 1;flex: 1;
+    }
+    a{
+        width: 5.8rem;
+        display: block;
+        border:none;
+        background-color: #fff;
+        border: 1px solid @btnColor;
+        border-radius: 2px;
+        height: 2.8rem;
+        line-height: 2.8rem;
+        text-align: center;
+        color: @btnColor;
+        margin-left: .5rem;
+        
+        font-size: 1.5rem;
+    }
+}
+
+.demo{
+    margin: 0 1rem;
+    margin-top: .5rem;
+    border: 1px solid @btnColor;
+    border-radius: 2px;
+    .obj {
+        width: 5rem;
+        height: 5rem;
+        background-color: @objColor;
+        margin: 1rem auto;
+    }
+    
+}
+
+#opacityShow{
+    .obj{
+        opacity:1;
+        transition:opacity 2s;
+    }
+    .obj.show {
+        opacity: 0;
+    }
+}
+
+#sizeaShow{
+    .obj{
+        transition:transform 2s;
+    }
+    .obj.show {
+        transform: scale(0.2,0.2);
+    }
+}
+
+#sizebShow{
+    .obj{
+        transition:width 2s, height 2s;
+    }
+    .obj.show {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+#moveShow{
+    .obj{
+        transition:transform 2s;
+    }
+    .obj.show {
+        transform: translateX(-8rem);
+    }
+}
+
+
+
+
