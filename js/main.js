@@ -3,15 +3,15 @@ $(function(){
 });
 
 /* Animation */
-$("#opacity").on("tap",function(){
+$("#opacity").on("click",function(){
     $("#opacityShow .obj").toggleClass('show');
 })
-$("#sizea").on("tap",function(){
+$("#sizea").on("click",function(){
     $("#sizeaShow .obj").toggleClass('show');
 })
-$("#sizeb").on("tap",function(){
+$("#sizeb").on("click",function(){
     $("#sizebShow .obj").toggleClass('show');
 })
-$("#move").on("tap",function(){
+$("#move").on("click",function(){
     $("#moveShow .obj").toggleClass('show');
 })

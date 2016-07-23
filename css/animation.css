@@ -169,26 +169,26 @@ nav .icono-home {
 }
 #opacityShow .obj {
   opacity: 1;
-  transition: opacity 2s;
+  transition: opacity 1s;
 }
 #opacityShow .obj.show {
   opacity: 0;
 }
 #sizeaShow .obj {
-  transition: transform 2s;
+  transition: transform 1s;
 }
 #sizeaShow .obj.show {
   transform: scale(0.2, 0.2);
 }
 #sizebShow .obj {
-  transition: width 2s, height 2s;
+  transition: width 2s, height 1s;
 }
 #sizebShow .obj.show {
   width: 2rem;
   height: 2rem;
 }
 #moveShow .obj {
-  transition: transform 2s;
+  transition: transform 1s;
 }
 #moveShow .obj.show {
   transform: translateX(-8rem);
