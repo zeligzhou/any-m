@@ -11,10 +11,11 @@ class Histogram extends Component {
             v:d3.randomBates(10)()*10
         }
     })
-    console.log(data)
+    //console.log(data)
     var xscale = d3.scaleLinear()
         .domain([0,10])
-        .range([100,w-100])
+        .range([0,w-0]);
+        var halfSingle = w/20.0
     svg.append("g").attr("class","axis")
         .attr("transform","translate(0,"+(h-100)+")")
         .call(d3.axisBottom(xscale))
@@ -39,6 +40,7 @@ class Histogram extends Component {
             .merge(update)
             .attr("class","bin")
             .attr("x",(d)=>{
+                //console.log(xscale(d.x0),xscale(d.x0) + halfSingle - 0.5*(xscale(d.x1)-xscale(d.x0)),xscale(d.x1)-xscale(d.x0))
                 return xscale(d.x0);
             })
             .attr("y",(d)=>{
@@ -48,7 +50,7 @@ class Histogram extends Component {
                 return xscale(d.x1)-xscale(d.x0);
             })
             .attr("height",(d)=>{
-                console.log(yscale(d.length))
+                //console.log(yscale(d.length))
                 return yscale(d.length)-50;
             })
             .on("click",function(){
