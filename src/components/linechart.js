@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
+import lineChartData from '../data/lineData'
 
-class Histogram extends Component {
+class Linechart extends Component {
   componentDidMount () {
+    console.log(lineChartData);
     var svg = d3.select("#svg"),
         w = parseInt(svg.style("width")),
         h = parseInt(svg.style("height"));
@@ -34,7 +36,7 @@ class Histogram extends Component {
         console.log(bins)
         var update = svg.selectAll(".bin")
             .data(bins)
-            
+
         update.exit().remove()
         update.enter().append("rect")
             .merge(update)
@@ -66,4 +68,4 @@ class Histogram extends Component {
   }
 }
 
-export default Histogram;
+export default Linechart;
