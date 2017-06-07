@@ -1,69 +1,26 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
+import dimple from "../lib/dimple.v2.3.0.min"
 import lineChartData from '../data/lineData'
+import tool from "../lib/tool"
 
 class Linechart extends Component {
   componentDidMount () {
-    console.log(lineChartData);
-    var svg = d3.select("#svg"),
-        w = parseInt(svg.style("width")),
-        h = parseInt(svg.style("height"));
-    var data = d3.range(0,1000).map(()=>{
-        return {
-            v:d3.randomBates(10)()*10
-        }
-    })
-    //console.log(data)
-    var xscale = d3.scaleLinear()
-        .domain([0,10])
-        .range([0,w-0]);
-        var halfSingle = w/20.0
-    svg.append("g").attr("class","axis")
-        .attr("transform","translate(0,"+(h-100)+")")
-        .call(d3.axisBottom(xscale))
-    var histogram = d3.histogram()
-        .value((d)=>{return d.v})
-        .domain(xscale.domain())
-        .thresholds(20)
-    var yscale = d3.scaleLinear()
-        .range([h-100,100])
-    draw();
-    function draw(){
-        var bins = histogram(data);
-        yscale.domain([0,d3.max(bins,(d)=>{
-            return d.length;
-        })])
-        console.log(bins)
-        var update = svg.selectAll(".bin")
-            .data(bins)
+    var data = lineChartData;
+    console.table(data.box);
+    var svg = d3.select("#svg").attr("height","200").attr("width","90%");
+    var _data = tool.objConverter(data.box,["label","week","real","forecast","date"]);
+    var myChart = new dimple.chart(svg,_data);
+    console.table(_data);
+    var x = myChart.addCategoryAxis("x","label");
+    myChart.addMeasureAxis("y","real");
+    myChart.addSeries(null,dimple.plot.line)
+    myChart.draw();
 
-        update.exit().remove()
-        update.enter().append("rect")
-            .merge(update)
-            .attr("class","bin")
-            .attr("x",(d)=>{
-                //console.log(xscale(d.x0),xscale(d.x0) + halfSingle - 0.5*(xscale(d.x1)-xscale(d.x0)),xscale(d.x1)-xscale(d.x0))
-                return xscale(d.x0);
-            })
-            .attr("y",(d)=>{
-                return 100-yscale(d.length);
-            })
-            .attr("width",(d)=>{
-                return xscale(d.x1)-xscale(d.x0);
-            })
-            .attr("height",(d)=>{
-                //console.log(yscale(d.length))
-                return yscale(d.length)-50;
-            })
-            .on("click",function(){
-                console.log(window.event);
-                console.log(d3.event)
-            })
-    }
   }
   render() {
     return (
-      <svg id="svg" className="histogram"></svg>
+      <svg id="svg" className="linechart"></svg>
     );
   }
 }
