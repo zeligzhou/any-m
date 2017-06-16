@@ -17,8 +17,136 @@
 .App-intro {
   font-size: large;
 }
+*{
+  box-sizing: border-box;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.svg-wrap{
+  background-color: #fff;
+  width: 100%;
+  overflow: hidden;
+  position:relative;
+}
+svg {
+  padding:35px 25px 10px 30px;
+}
+text {
+  font: 10px sans-serif;
+  color: #8f9296
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #d8d8d8;
+  shape-rendering: crispEdges;
+  stroke-width: 0.5px;
+}
+
+g.inner_line line {
+  fill: none;
+  stroke: #EBEBEB;
+  shape-rendering: crispEdges;
+  stroke-width: 0.5px;
+  opacity: 1;
+  stroke-dasharray: 2,2;
+}
+g.inner_line>g:first-of-type{
+  opacity: 0
+}
+
+g.inner_line .domain {
+  fill: none;
+  stroke: #EBEBEB;
+  shape-rendering: crispEdges;
+  stroke-width: 0.5px;
+  opacity: 1;
+  stroke-dasharray: 2,2;
+}
+
+g.inner_line_x .domain {
+  fill: none;
+  stroke: #EBEBEB;
+  shape-rendering: crispEdges;
+  stroke-width: 1px;
+}
+
+g.inner_line_x .selected line{
+  fill: none;
+  stroke: #FFCE7F;
+  shape-rendering: crispEdges;
+  stroke-width: 1px;
+  opacity: 1;
+}
+
+g.inner_line_mask line{
+  stroke-width: 5px;
+}
+
+.axis .domain, g.inner_line_mask .domain{
+  opacity: 0
+}
+
+.dot {
+  fill: white;
+  stroke: rgb(255, 158, 0);
+  stroke-width: 1px;
+  opacity: 0
+}
+
+.dot.selected {
+  r:5;
+  opacity: 1;
+  transition: r 0.3s;
+}
+
+.line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 0.5px;
+}
+
+.tick line{
+  opacity: 0
+}
+
+.real.line {
+  stroke: rgb(255, 158, 0);
+}
+
+.forecast.line{
+  stroke: rgb(255, 158, 0);
+  stroke-dasharray: 3,3;
+}
+
+.label {
+  text-anchor: middle;
+}
+
+.label rect {
+  fill: white;
+}
+
+.label-key {
+  font-weight: bold;
+}
+.tooltip{
+  position: absolute;
+  padding: 5px;
+  font-size: 10px;
+  line-height: 15px;
+  height: 25px;
+  background: rgba(255, 158, 0, 0.90);
+  color: #fff;
+  border-radius: 4px;
+  top:12px;
+  left:-500px;
+  z-index: 999;
+  white-space: nowrap;
+  transition: left .2s;
 }
