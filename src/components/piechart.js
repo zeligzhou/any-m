@@ -15,7 +15,7 @@ class Linechart extends Component {
   }
   render() {
     return (
-      <div className='svg-wrap'><div className="svg-pie"></div></div>
+      <div className='svg-wrap piechart'><div className="svg-pie"></div></div>
     );
   }
 }
