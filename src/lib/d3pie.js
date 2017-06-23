@@ -62,6 +62,7 @@ const d3g = {
       console('no bar data');
       return false;
     }
+    svgWrap = d3.select(document.querySelector('.svg-pie')).append('svg');
     let startTime = new Date();
     let _data = drawPie(data, id);
     console.log(id + ' draw in ' + ((new Date()).getTime() - startTime.getTime()) + 'ms');

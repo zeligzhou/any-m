@@ -51,10 +51,10 @@ const stat = (_data, scales, id, box, type = 0, ticks = 4) => {
   .attr('transform', `translate(${box.left},${box.height - box.bottom})`)
   .call(xInner);
 
-  d3.selectAll('.x.axis .tick *').attr('opacity', 0);
-  d3.selectAll('.y.axis .tick *').attr('fill', '#8f9296');
+  d3.select(`#${id}`).selectAll('.x.axis .tick *').attr('opacity', 0);
+  d3.select(`#${id}`).selectAll('.y.axis .tick *').attr('fill', '#8f9296');
 
-  let sel = d3.selectAll(`.x.axis .tick:nth-child(${calTimeAxis(_data.length)})`);
+  let sel = d3.select(`#${id}`).selectAll(`.x.axis .tick:nth-child(${calTimeAxis(_data.length)})`);
   sel.selectAll('*').attr('opacity', 1).attr('fill', '#8f9296');
   console.log('-->the axis of ' + id + ' draw in ' + ((new Date()).getTime() - startTime.getTime()) + 'ms');
 };
