@@ -1,29 +1,8 @@
-.App {
-  text-align: center;
+html {
+  font-size: 50px;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-*{
+* {
   box-sizing: border-box;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 .svg-wrap{
@@ -33,10 +12,15 @@
   position:relative;
 }
 svg {
-  padding:35px 25px 10px 30px;
+  padding:.7rem .5rem .2rem .6rem;
 }
+
+.scatter svg {
+  padding:.7rem .24rem .2rem .34rem;
+}
+
 text {
-  font: 10px sans-serif;
+  font: .2rem sans-serif;
   color: #8f9296
 }
 
@@ -48,7 +32,7 @@ text {
   stroke-width: 0.5px;
 }
 
-g.inner_line line {
+g.inner-line-y line {
   fill: none;
   stroke: #EBEBEB;
   shape-rendering: crispEdges;
@@ -56,11 +40,11 @@ g.inner_line line {
   opacity: 1;
   stroke-dasharray: 2,2;
 }
-g.inner_line>g:first-of-type{
+g.inner-line-y>g:first-of-type{
   opacity: 0
 }
 
-g.inner_line .domain {
+g.inner-line-y .domain {
   fill: none;
   stroke: #EBEBEB;
   shape-rendering: crispEdges;
@@ -69,14 +53,14 @@ g.inner_line .domain {
   stroke-dasharray: 2,2;
 }
 
-g.inner_line_x .domain {
+g.inner-line-x .domain {
   fill: none;
   stroke: #EBEBEB;
   shape-rendering: crispEdges;
   stroke-width: 1px;
 }
 
-g.inner_line_x .selected line{
+g.inner-line-x .selected line{
   fill: none;
   stroke: #FFCE7F;
   shape-rendering: crispEdges;
@@ -84,11 +68,11 @@ g.inner_line_x .selected line{
   opacity: 1;
 }
 
-g.inner_line_mask line{
-  stroke-width: 5px;
+g.inner-line-mask line{
+  stroke-width: .1rem;
 }
 
-.axis .domain, g.inner_line_mask .domain{
+.axis .domain, g.inner-line-mask .domain{
   opacity: 0
 }
 
@@ -101,6 +85,27 @@ g.inner_line_mask line{
 
 .dot.selected {
   r:5;
+  opacity: 1;
+  transition: r 0.3s;
+}
+
+.scatter .dot.selected {
+  r:4;
+  opacity: 1;
+  transition: r 0.3s;
+}
+
+.dot.mark {
+  r:2;
+  fill: #FFAA1F;
+  stroke: #FFAA1F;
+  opacity: 1;
+}
+
+.dot.mark.selected {
+  r:4;
+  fill: rgba(255, 158, 0, 0.6);
+  stroke: rgb(255, 158, 0);
   opacity: 1;
   transition: r 0.3s;
 }
@@ -137,16 +142,40 @@ g.inner_line_mask line{
 }
 .tooltip{
   position: absolute;
-  padding: 5px;
-  font-size: 10px;
-  line-height: 15px;
-  height: 25px;
+  padding: .1rem;
+  font-size: .2rem;
+  line-height: .3rem;
   background: rgba(255, 158, 0, 0.90);
   color: #fff;
-  border-radius: 4px;
-  top:12px;
-  left:-500px;
+  border-radius: .1rem;
+  top:.24rem;
+  left:-10rem;
   z-index: 999;
   white-space: nowrap;
   transition: left .2s;
 }
+
+
+.bar{
+  fill:#FCB205;
+}
+
+.pie-bg{
+  display: none
+}
+
+.pie-bg.active{
+  display: inline;
+  opacity: 0.3
+}
+
+.piechart{
+  padding: 0
+}
+
+.piechart svg{
+  display: block;
+  margin: 0 auto;
+  padding: 0
+}
+
