@@ -9,6 +9,30 @@ const box = {
   bottom: 18,
 };
 
+const getPosition = (pos) => {
+  let d = 20;
+  let p = { x: 1, y: 1 };
+  let ratio = Math.abs(pos.x) / Math.abs(pos.y);
+  let x;
+  let y;
+  let tx = 0.5;
+  if (pos.x < 0) {
+    p.x = -1;
+    tx = 64;
+  }
+  if (pos.y < 0) {
+    p.y = -1;
+  }
+  if (ratio >= 1) {
+    x = pos.x * 1 + d * p.x;
+    y = x * pos.y / pos.x;
+  } else {
+    y = pos.y * 1 + d * p.y;
+    x = pos.x * y / pos.y;
+  }
+  return { line: [{ x, y }, { x: x + p.x * 8.5, y }], text: { x: x + p.x * (8.5 + tx), y: y + 4 } };
+};
+
 const getPieData = (data) => {
   let ret = { value: [], color: [], type: [] };
   let dataLength = data.length;
@@ -49,10 +73,33 @@ const drawPie = (data, id) => {
   .style('fill', (d, i) => _data.color[i])
   .attr('d', arc)
   .attr('transform', 'translate(160,125)')
-  .attr('data-info', (d, i) => `${_data.value[i]},${_data.type[i]},${_data.color[i]}`);
-
-  svgWrap.append('div')
-  .attr('class', 'piechart-center-label');
+   .attr('data-info', (d, i) => `${_data.value[i]};${_data.type[i]};${_data.color[i]};${arc.centroid(d)}`);
+  let labelItem = document.querySelectorAll('.pie-item');
+  let labelSize = (labelItem.length <= 5) ? labelItem.length : 5;
+  let labelLine = [];
+  const lineFunc = d3.line()
+  .x(d => d.x)
+  .y(d => d.y);
+  svgWrap.append('g').attr('class', 'pie-label-line').attr('transform', 'translate(160,125)');
+  for (let i = 0; i < labelSize; i++) {
+    let color = labelItem[i].getAttribute('data-info').split(';')[2];
+    let text = `${labelItem[i].getAttribute('data-info').split(';')[1]} ${labelItem[i].getAttribute('data-info').split(';')[0]}%`;
+    let pos = labelItem[i].getAttribute('data-info').split(';')[3].split(',');
+    labelLine[i] = [];
+    labelLine[i].push({ x: pos[0], y: pos[1] });
+    let posGroup = getPosition({ x: pos[0], y: pos[1] });
+    labelLine[i] = labelLine[i].concat(posGroup.line);
+    svgWrap.select('.pie-label-line').append('path')
+    .attr('d', lineFunc(labelLine[i]))
+    .attr('stroke', color)
+    .attr('stroke-width', 1)
+    .attr('fill', 'none');
+    svgWrap.select('.pie-label-line').append('text')
+    .attr('x', posGroup.text.x)
+    .attr('y', posGroup.text.y)
+    .attr('fill', color)
+    .text(text);
+  }
   return _data;
 };
 

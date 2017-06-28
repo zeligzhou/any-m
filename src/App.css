@@ -179,3 +179,7 @@ g.inner-line-mask line{
   padding: 0
 }
 
+.pie-label-line text{
+  font-size: .24rem;
+}
+

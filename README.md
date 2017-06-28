@@ -1,3 +1,3 @@
-## React Charts
+## D3 Charts
 - 启动`npm start`
-- 做一些图表示例
+- 分别实现了线形图，散点图，柱状图和饼图

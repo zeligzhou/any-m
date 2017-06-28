@@ -75,7 +75,7 @@ const barGener = (svgObj, data, scales) => {
   .attr('width', 28)
   .attr('height', d => box.height - box.bottom - scales.num(d.yValue))
   .attr('transform', `translate(${18},0)`);
-  d3.selectAll('.single-bar')
+  d3.select(`#${svgObj}`).selectAll('.single-bar')
   .append('text')
   .attr('x', d => scales.xaxis(d.xValue))
   .attr('y', d => scales.num(d.yValue))
